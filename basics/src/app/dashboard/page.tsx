@@ -1,13 +1,15 @@
 export default function Dashboard(){
-    return(<>
-    <h1>Dashboard</h1>
-    <br/>
-    <NamedExp/>
-    <br/>
-    <Dashboard12/>
-    <SubDashbord/>
-    <MySecretComponent/>
-    </> )
+    return(
+        <>
+            <h1>Dashboard</h1>
+            <br/>
+            <NamedExp/>
+            <br/>
+            <Dashboard12/>
+            <SubDashbord/>
+            <MySecretComponent/>
+        </> 
+    )
 
 }
 export function NamedExp(){

@@ -7,8 +7,8 @@ export default async function ProductDetailsReview(
     }
 
 ){
-    const {productId,reviewid}= params
-    // const {productId,reviewid}=await params can use with or without await it is upto us 
+    // const {productId,reviewid}= params
+    const {productId,reviewid}=await params //can use with or without await it is upto us 
     console.log(reviewid,typeof(reviewid))
         if(parseInt(reviewid)>10){  notFound();}
     return(

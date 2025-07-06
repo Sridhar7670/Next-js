@@ -1,3 +1,9 @@
+export const metadata = {
+  title: "main - application",
+  description: "main layout description",
+};
+
+
 export default function Home(){
     return (
         <div>
