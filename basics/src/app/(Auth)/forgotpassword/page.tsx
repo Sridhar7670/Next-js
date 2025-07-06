@@ -1,3 +1,3 @@
 export default function ForgotPassword(){
-    return <h2> have you forgooten this dont woory create new..!</h2>
+    return <h2> have you forgooten..create new..!</h2>
 }
