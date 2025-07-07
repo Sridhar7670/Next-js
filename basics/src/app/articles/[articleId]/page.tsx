@@ -27,10 +27,10 @@ export default  function NewsArticle({params,
     searchParams
 }:{
     params : {articleId:string};
-    searchParams :{lang?:"en" | "es"|"fr"};
+    searchParams ?:{lang?:"en" | "es"|"fr"};
 }){
     const {articleId}=  params;
-    const {lang="en"}=  searchParams;
+    const {lang="en"}=  searchParams ?? {};
     return (
         <>
         <h1>news articles {articleId}</h1>

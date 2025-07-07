@@ -1,5 +1,7 @@
 import { notFound, redirect } from "next/navigation";
-
+function getRandomInt(count:number){
+    return Math.floor(Math.random()*count);
+}
 export default async function ProductDetailsReview(
     {params}:{
     //    params:Promise <{productId :string,reviewid: string}> 
@@ -9,6 +11,10 @@ export default async function ProductDetailsReview(
 ){
     // const {productId,reviewid}= params
     const {productId,reviewid}=await params //can use with or without await it is upto us 
+    const random=getRandomInt(2)
+    if (random==1){
+        throw new Error ("error is loading")
+    }
     console.log(reviewid,typeof(reviewid))
         if(parseInt(reviewid)>10){  
             // notFound();
