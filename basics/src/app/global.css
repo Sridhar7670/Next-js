@@ -1,0 +1,19 @@
+.parent{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.active {
+  font-weight: bold;
+  margin: 1rem; 
+}
+
+.inactive {
+  color: blue;
+  margin-right: 1rem; 
+}

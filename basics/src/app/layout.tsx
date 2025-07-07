@@ -1,6 +1,6 @@
 // app/layout.tsx
 import { ReactNode } from "react";
-import "../app/(Auth)/styles.css"
+import './global.css';
 export const metadata = {
   title: {
     default:"home page",
