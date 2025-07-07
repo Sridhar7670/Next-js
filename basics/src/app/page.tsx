@@ -10,6 +10,10 @@ export default function Home(){
             <Link href={"/products"}>Products</Link>
             <br/>
             <Link href={"/register"}>Register</Link>
+            <br/>
+            <Link href={"/articles/breaking-news-123?lang=en"}>Read in English</Link>
+            <br/>
+            <Link href={"/articles/breaking-news-123?lang=fr"}>Read in Fresch</Link>
         </div>
     )
 }

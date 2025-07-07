@@ -1,17 +1,20 @@
-import { Metadata } from "next"
-import Link from "next/link"
+// app/blog/page.tsx (Server Component)
+import { Metadata } from "next";
+import ClientWrapper from "./ClientWrapper";
 
-export const metadata:Metadata={
-    title:{
-        absolute:"blog"
-    }
-}
-export default function Blog(){
-    return (
+export const metadata: Metadata = {
+  title: {
+    absolute: "blog",
+  },
+};
+
+export default async function Blog() {
+  await new Promise((r) => setTimeout(r, 2000));
+
+  return (
     <>
-    <h2>blog</h2>
-    <Link href={"/"}>Home</Link>
-    <br></br>
-    <Link href={"/login"}>Login</Link>
-    </>)
+      <h2>blog</h2>
+      <ClientWrapper />
+    </>
+  );
 }

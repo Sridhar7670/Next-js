@@ -2,7 +2,7 @@
 
 //all kind of imports andi 
 import { ReactNode } from "react";
-import "../global.css"
+import "../../../app/global.css"
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
