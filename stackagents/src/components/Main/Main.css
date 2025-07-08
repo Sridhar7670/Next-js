@@ -1,0 +1,104 @@
+.main-content {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  backdrop-filter: blur(50px);
+}
+
+.main-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #1f2937;
+}
+
+.highlight {
+  color: #4f46e5;
+}
+
+.main-content p {
+  font-size: 1.2rem;
+  color: #6b7280;
+  margin-bottom: 2rem;
+}
+
+.input-section {
+  position: relative;
+  width: 50vw;
+  min-width: 300px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border-radius: 24px;
+  overflow: hidden;
+  background: white;
+}
+
+.input-field {
+  width: 100%;
+  padding: 1rem 4rem 1rem 1.5rem; /* Added right padding for button */
+  border: 1px solid #e5e7eb;
+  border-radius: 24px;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+  background: transparent;
+}
+
+.input-field:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.build-button {
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 1.25rem ;
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  border-bottom-right-radius: 1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.build-button:hover {
+  background-color: #4338ca;
+}
+
+/* Make the input section responsive */
+@media (max-width: 768px) {
+  .main-content {
+    height: 80vh;
+    padding: 2rem;
+  }
+
+  .input-section {
+    width: 90vw;
+  }
+
+  .input-field {
+    font-size: 1rem;
+    padding: 0.8rem 1.5rem 0.8rem 1rem;
+  }
+
+  .build-button {
+    padding: 1rem 1.25rem;
+    font-size: 0.8rem;
+  }
+
+  .main-content h1 {
+    font-size: 2rem;
+  }
+
+  .main-content p {
+    font-size: 1rem;
+  }
+}
