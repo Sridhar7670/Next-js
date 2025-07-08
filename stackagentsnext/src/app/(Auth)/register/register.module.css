@@ -1,0 +1,89 @@
+.register {
+  width: 100%;
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 30px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #fafafa;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.labelRegister {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.button {
+  width: 100%;
+  padding: 10px;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.button:hover {
+  background-color: #135ca1;
+}
+
+.loginText {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.loginLink {
+  color: #1976d2;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.loginLink:hover {
+  text-decoration: underline;
+}
+
+.errorLogin {
+  color: red;
+  font-size: 13px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+.errorMsg {
+  background-color: #ffe6e6;
+  color: #cc0000;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.successMsg {
+  background-color: #e6ffe6;
+  color: #007e33;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  text-align: center;
+}

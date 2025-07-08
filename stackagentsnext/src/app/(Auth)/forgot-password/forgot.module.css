@@ -1,0 +1,45 @@
+.forgotPassword {
+  display: flex;
+  flex-direction: column;
+}
+
+.forgotPassword h1 {
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.labelForgot {
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.input {
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.errorMsg {
+  color: #cc0000;
+  margin-bottom: 10px;
+}
+
+.successMsg {
+  color: #008000;
+  margin-bottom: 10px;
+}
+
+.button {
+  padding: 10px;
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #005bb5;
+}
