@@ -3,7 +3,7 @@ import { notFound } from "next/navigation"
 export default async function ProductsReview(
     {params}:
     {params:
-        Promise <{productId :string ,reviewid:string}>
+        {productId :string ,reviewid:string}
     })
     {
         const {productId,reviewid}=await params

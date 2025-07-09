@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import axios from 'axios'
 import Cookies from 'js-cookie'
-// import Context from '@/context/Context' // adjust as needed
 import styles from './login.module.css'
 
 function Login() {

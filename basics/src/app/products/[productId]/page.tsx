@@ -1,9 +1,9 @@
 import { Metadata } from "next";
-type Props ={params :Promise<{productId:string}>}
+type Props ={params :{productId:string}}
 export const generateMetadata = async ({params}:Props):Promise<Metadata>=>{
-    const productId=(await params).productId
+    const productId=params.productId
     console.log(productId,"prod id")
-    console.log(await params,"params")
+    // console.log(await params,"params")
     return {
         title:`title:${productId}`,
         description:`product :${productId}`
@@ -11,7 +11,7 @@ export const generateMetadata = async ({params}:Props):Promise<Metadata>=>{
 }
 
 export default async function ProductDetails({params}:{params :{productId:string}}) {
-    const productId=(await params).productId
+    const productId=params.productId
     return (
         <div>
             <h2>Details of products {productId}...</h2>

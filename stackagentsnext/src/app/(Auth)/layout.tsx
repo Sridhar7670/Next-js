@@ -1,5 +1,4 @@
 import React from 'react';
-import './auth.css'; // or CSS Module if preferred
 
 export const metadata = {
   title: 'Auth',
