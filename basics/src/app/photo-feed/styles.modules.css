@@ -1,0 +1,31 @@
+.container {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.title {
+  text-align: center;
+  font-size: 1.875rem; /* Tailwind's text-3xl */
+  font-weight: bold;
+  margin: 1rem 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
+}
