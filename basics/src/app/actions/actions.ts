@@ -1,12 +1,16 @@
-"use server";
+// "use server";
 
-export default async function submitContactForm(formData: FormData) {
-  await new Promise((resolve) => setTimeout(resolve, 2000)); // simulate delay
+// export default async function submitContactForm(prevState: any, formData: FormData) {
+//   await new Promise((resolve) => setTimeout(resolve, 2000)); // simulate delay
 
-  const email = formData.get("email");
-  const message = formData.get("message");
+//   const email = formData.get("email")?.toString() || "";
+//   const message = formData.get("message")?.toString() || "";
 
-  console.log(email, message);
+//   console.log(email, message);
 
-  return "Error: please Re-Fill the form again..";
-}
+//   return {
+//     email,
+//     message,
+//     error: "Error: please re-fill the form again."
+//   };
+// }
