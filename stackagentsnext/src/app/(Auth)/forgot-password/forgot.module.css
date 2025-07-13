@@ -1,16 +1,35 @@
-.forgotPassword {
+
+.Gp{
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.forgotPassword {
+  max-width: 450px;
+  width: 90vw;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 2rem;
+  background-color: white;
 }
 
-.forgotPassword h1 {
+.h1 {
   margin-bottom: 20px;
   font-weight: 600;
+  color: black;
+  text-align: center;
 }
 
 .labelForgot {
   margin-bottom: 6px;
   font-weight: 500;
+  font-size: medium;
+  color: black;
+  padding: 5px;
 }
 
 .input {
@@ -19,6 +38,8 @@
   margin-bottom: 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  background-color: whitesmoke;
+  color: black;
 }
 
 .errorMsg {

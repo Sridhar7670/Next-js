@@ -1,12 +1,18 @@
-/* .loginContainer {
-  width: 100%;
-  max-width: 400px;
+.loginContainer {
+  width: 90vw;
+  max-width: 450px;
   margin: 0 auto;
   padding: 30px;
   border: 1px solid #ccc;
   border-radius: 10px;
   background-color: #fafafa;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.LoginContainerGp{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 .auth-layout{
   display: flex;
@@ -24,6 +30,7 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.1);
 }
 .heading {
+  color: black;
   text-align: center;
   margin-bottom: 20px;
   font-size: 24px;
@@ -34,6 +41,8 @@
   display: block;
   margin-bottom: 6px;
   font-weight: 500;
+  color: black;
+
 }
 
 .input {
@@ -43,6 +52,8 @@
   border: 1px solid #aaa;
   border-radius: 5px;
   font-size: 14px;
+  background-color: whitesmoke;
+  color: black;
 }
 
 .button {
@@ -65,6 +76,7 @@
   margin-top: 15px;
   text-align: center;
   font-size: 14px;
+  color: black;
 }
 
 .link {
@@ -100,5 +112,5 @@
   border-radius: 5px;
   margin-bottom: 10px;
   text-align: center;
-} */
+} 
 

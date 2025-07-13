@@ -27,7 +27,7 @@ const ForgotPassword = () => {
     }
 
     try {
-      const res = await fetch("https://backend-d70u.onrender.com/forgot-password", {
+      const res = await fetch("https://backend/forgot-password", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
@@ -49,8 +49,9 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className={styles.forgotPassword}>
-      <h1>Forgot Password</h1>
+   <div className={styles.Gp}>
+     <div className={styles.forgotPassword}>
+      <h1 className={styles.h1}>Forgot Password</h1>
 
       <label htmlFor="email" className={styles.labelForgot}>Email ID</label>
       <input
@@ -72,6 +73,7 @@ const ForgotPassword = () => {
         Send Reset Link
       </button>
     </div>
+   </div>
   );
 };
 

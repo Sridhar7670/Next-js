@@ -50,7 +50,7 @@ export default function Register() {
     if (!validateForm()) return
 
     try {
-      const res = await axios.post('https://backend-d70u.onrender.com/register', temp)
+      const res = await axios.post('https://backend.com/register', temp)
       setMessage(res.data.msg)
       setIsError(false)
       setErrors({})
@@ -65,8 +65,9 @@ export default function Register() {
   }
 
   return (
-    <div className={styles.register}>
-      <h1>Please Register</h1>
+   <div className={styles.regGp}>
+     <div className={styles.register}>
+      <h1 className={styles.h1}>Please Register</h1>
 
       <label htmlFor="register-email" className={styles.labelRegister}>Email ID</label>
       <input
@@ -115,5 +116,6 @@ export default function Register() {
         <Link href="/login" className={styles.loginLink}>Login</Link>
       </p>
     </div>
+   </div>
   )
 }

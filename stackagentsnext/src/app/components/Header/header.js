@@ -1,10 +1,11 @@
 "use client"
 import  { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation'
 import './Header.css';
-
+import Link from 'next/link';
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
-
+  const router=useRouter();
   const toggleMobileMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -26,18 +27,18 @@ function Header() {
 
   return (
     <header className="header">
-      <a className="logo" href="#">Stack Agents</a>
+      <Link className="logo" href="#">Stack Agents</Link>
 
       <nav className="nav">
-        <a href="#">Home</a>
-        <a href="#">Products</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
+        <Link href="/home">Home</Link>
+        <Link href="/products">Products</Link>
+        <Link href="/about">About</Link>
+        <Link href="/contact">Contact</Link>
       </nav>
 
       <div className="user-actions">
-        <button className="login-btn">Login</button>
-        <button className="signup-btn">Sign Up</button>
+       <button className="login-btn" onClick={() => router.push("/login")}> Login </button>
+        <button className="signup-btn" onClick={()=>router.push('/register')}>Sign Up</button>
       </div>
 
       <button onClick={toggleMobileMenu} className="mobile-menu-toggle">
@@ -50,14 +51,14 @@ function Header() {
 
       <div className={`mobile-menu ${isOpen ? 'open' : ''}`}>
         <nav className="mobile-nav">
-          <a href="#">Home</a>
-          <a href="#">Products</a>
-          <a href="#">About</a>
-          <a href="#">Contact</a>
+          <Link href="/home">Home</Link>
+          <Link href="/products">Products</Link>
+          <Link href="/about">About</Link>
+          <Link href="/contact">Contact</Link>
         </nav>
         <div className="mobile-user-actions">
-          <button className="login-btn">Login</button>
-          <button className="signup-btn">Sign Up</button>
+          <button className="login-btn" onClick={() => router.push("/login")}>Login</button>
+          <button className="signup-btn" onClick={()=>router.push('/register')}>Sign Up</button>
         </div>
       </div>
     </header>

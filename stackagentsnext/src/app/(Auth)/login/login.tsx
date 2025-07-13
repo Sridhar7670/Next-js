@@ -55,7 +55,8 @@ function Login() {
   }
 
   return (
-    <div className={styles.loginContainer}>
+    <div className={styles.LoginContainerGp}>
+      <div className={styles.loginContainer}>
       <h1 className={styles.heading}>Please Login</h1>
 
       <label htmlFor="email" className={styles.label}>Email ID</label>
@@ -96,8 +97,9 @@ function Login() {
       </p>
 
       <p className={styles.text}>
-        <Link href="/forgotpassword" className={styles.link}>Forgot Password?</Link>
+        <Link href="/forgot-password" className={styles.link}>Forgot Password?</Link>
       </p>
+    </div>
     </div>
   )
 }
