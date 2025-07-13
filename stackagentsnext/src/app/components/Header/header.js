@@ -5,10 +5,15 @@ import './Header.css';
 import Link from 'next/link';
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const router=useRouter();
+  const router = useRouter();
+
   const toggleMobileMenu = () => {
     setIsOpen(!isOpen);
   };
+
+  // const handleClick = () => {
+  //   throw new Error('Manual client error triggered!');
+  // };
 
   useEffect(() => {
     const handleResize = () => {
@@ -19,26 +24,27 @@ function Header() {
 
     window.addEventListener('resize', handleResize);
 
-    // Cleanup on unmount
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [isOpen]); // depend on isOpen so it has current value
+  }, [isOpen]);
 
   return (
     <header className="header">
-      <Link className="logo" href="#">Stack Agents</Link>
+      <Link className="logo" href="/">Stack Agents</Link>
 
       <nav className="nav">
-        <Link href="/home">Home</Link>
         <Link href="/products">Products</Link>
         <Link href="/about">About</Link>
         <Link href="/contact">Contact</Link>
+
+        
+        {/* <button onClick={handleClick}>Trigger Error</button> */}
       </nav>
 
       <div className="user-actions">
-       <button className="login-btn" onClick={() => router.push("/login")}> Login </button>
-        <button className="signup-btn" onClick={()=>router.push('/register')}>Sign Up</button>
+        <button className="login-btn" onClick={() => router.push("/login")}>Login</button>
+        <button className="signup-btn" onClick={() => router.push('/register')}>Sign Up</button>
       </div>
 
       <button onClick={toggleMobileMenu} className="mobile-menu-toggle">
@@ -51,18 +57,18 @@ function Header() {
 
       <div className={`mobile-menu ${isOpen ? 'open' : ''}`}>
         <nav className="mobile-nav">
-          <Link href="/home">Home</Link>
           <Link href="/products">Products</Link>
           <Link href="/about">About</Link>
           <Link href="/contact">Contact</Link>
         </nav>
         <div className="mobile-user-actions">
           <button className="login-btn" onClick={() => router.push("/login")}>Login</button>
-          <button className="signup-btn" onClick={()=>router.push('/register')}>Sign Up</button>
+          <button className="signup-btn" onClick={() => router.push('/register')}>Sign Up</button>
         </div>
       </div>
     </header>
   );
 }
+
 
 export default Header;

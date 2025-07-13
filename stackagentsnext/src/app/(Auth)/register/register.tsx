@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import axios from 'axios'
+import axios,{AxiosError} from 'axios'
 import Link from 'next/link'
 import styles from './register.module.css'
 
@@ -49,19 +49,20 @@ export default function Register() {
   const handleRegister = async () => {
     if (!validateForm()) return
 
-    try {
-      const res = await axios.post('https://backend.com/register', temp)
-      setMessage(res.data.msg)
-      setIsError(false)
-      setErrors({})
-    } catch (err: any) {
-      if (err.response?.data?.msg) {
-        setMessage(err.response.data.msg)
-      } else {
-        setMessage('Something went wrong')
-      }
-      setIsError(true)
+  try {
+    const res = await axios.post('https://backend.com/register', temp)
+    setMessage(res.data.msg)
+    setIsError(false)
+    setErrors({})
+  } catch (err) {
+    const error = err as AxiosError<{ msg?: string }>
+    if (error.response?.data?.msg) {
+      setMessage(error.response.data.msg)
+    } else {
+      setMessage('Something went wrong')
     }
+    setIsError(true)
+  }
   }
 
   return (

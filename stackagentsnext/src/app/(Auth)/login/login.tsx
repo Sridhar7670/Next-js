@@ -1,9 +1,9 @@
 'use client'
 
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 import Cookies from 'js-cookie'
 import styles from './login.module.css'
 
@@ -35,23 +35,25 @@ function Login() {
     setErrors(errs)
     if (Object.keys(errs).length > 0) return
 
-    try {
-      const res = await axios.post(`https://somebackendapibySeniors.com/login`, temp)
-      setMessage(res.data.msg)
+try {
+  const res = await axios.post(`https://somebackendapibySeniors.com/login`, temp)
+  setMessage(res.data.msg)
 
-      if (res.data.token) {
-        Cookies.set('token', JSON.stringify(res.data.token), { expires: 1 })
-        Cookies.set('name', JSON.stringify(res.data.name), { expires: 1 })
-        setIsSuccess(true)
+  if (res.data.token) {
+    Cookies.set('token', JSON.stringify(res.data.token), { expires: 1 })
+    Cookies.set('name', JSON.stringify(res.data.name), { expires: 1 })
+    setIsSuccess(true)
 
-        setTimeout(() => {
-          router.push('/')
-        }, 1000)
-      }
-    } catch (err: any) {
-      setMessage(err?.response?.data?.msg || 'Login failed')
-      setIsSuccess(false)
-    }
+    setTimeout(() => {
+      router.push('/')
+    }, 1000)
+  }
+} catch (err) {
+  const error = err as AxiosError<{ msg: string }>
+  setMessage(error.response?.data?.msg || 'Login failed')
+  setIsSuccess(false)
+}
+
   }
 
   return (

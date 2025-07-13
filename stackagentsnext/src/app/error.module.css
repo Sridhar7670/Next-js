@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: #ff4d4f;
+  background-color: transparent;
+  text-align: center;
+}
+.notFoundBackground {
+  background-image: url('/path/to/your/background.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh; /* full viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white; /* if you want text to stand out */
+}
+.container h1 {
+  font-size: 2rem;
+  margin: 1rem 0;
+}
+
+.container p {
+  font-size: 1.2rem;
+}

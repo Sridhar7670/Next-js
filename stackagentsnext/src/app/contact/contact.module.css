@@ -1,0 +1,85 @@
+.container {
+  max-width: 900px;
+  margin: 10vh auto;
+  padding: 2rem 1rem;
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fefefe;
+  color: #222;
+}
+
+.heading {
+  text-align: center;
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+  color: #2c3e50;
+}
+
+.introCard {
+  background: #dbeafe; /* light blue */
+  padding: 1.8rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+  color: #1e3a8a;
+  text-align: center;
+}
+
+.teamGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.8rem 1.5rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  transition: box-shadow 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 10px 24px rgba(0,0,0,0.1);
+}
+
+.card h2 {
+  margin-bottom: 0.5rem;
+  color: #1f2937;
+  font-size: 1.4rem;
+}
+
+.card p {
+  color: #475569;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.contactInfo {
+  background: #f3f4f6; /* light gray */
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+}
+
+.contactInfo h2 {
+  margin-bottom: 1rem;
+  color: #111827;
+}
+
+.contactInfo p {
+  font-size: 1.1rem;
+  margin: 0.3rem 0;
+}
+
+.contactInfo a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.contactInfo a:hover {
+  text-decoration: underline;
+}

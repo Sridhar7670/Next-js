@@ -7,7 +7,8 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   height: 10vh;
   backdrop-filter: blur(50px);
-  position: relative;
+  position: fixed;
+  width: 100%;
   z-index: 1000;
 }
 
@@ -91,7 +92,8 @@
 }
 .open{
   /* backdrop-filter: blur(50px); */
-  background-color: rgb(134, 192, 225);
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+
 }
 .mobile-nav {
   display: flex;
