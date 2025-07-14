@@ -9,14 +9,14 @@
   text-align: center;
 }
 .notFoundBackground {
-  background-image: url('/path/to/your/background.jpg');
+  background-image: url('/public/error.jpeg');
   background-size: cover;
   background-position: center;
-  height: 100vh; /* full viewport height */
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: white; /* if you want text to stand out */
+  color: white; 
 }
 .container h1 {
   font-size: 2rem;
