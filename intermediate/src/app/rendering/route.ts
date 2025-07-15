@@ -1,8 +1,13 @@
 import { NextRequest } from "next/server";
 import { data } from "./data"
 export async function GET(request:NextRequest){
-    return Response.json(data)
+    const searchParams=request.nextUrl.searchParams;
+    const query=searchParams.get("query")
+
+    const filteredData=query ? data.filter((data)=>data.text.includes(query)): data;
+    return Response.json(filteredData)
 }
+
 export async function POST(request:Request){
     const dynamicData=await request.json();
     const newdata={
