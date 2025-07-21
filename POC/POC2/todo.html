@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List App</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Style for the remove button on hover */
+        .task-item:hover .remove-btn {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+    <div class="w-full max-w-md mx-auto bg-white rounded-xl shadow-lg p-6 md:p-8">
+        
+        <!-- Header -->
+        <header class="mb-6">
+            <h1 class="text-3xl font-bold text-gray-800">My To-Do List</h1>
+            <p class="text-gray-500">Add and remove tasks to stay organized.</p>
+        </header>
+
+        <!-- Add Task Form -->
+        <form id="add-task-form" class="flex gap-3 mb-6">
+            <input 
+                type="text" 
+                id="task-input"
+                placeholder="e.g., Learn JavaScript" 
+                class="flex-grow p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                autocomplete="off"
+            >
+            <button 
+                type="submit" 
+                class="bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition"
+            >
+                Add
+            </button>
+        </form>
+
+        <!-- Task List -->
+        <ul id="task-list" class="space-y-3">
+
+        </ul>
+
+    </div>
+
+ 
+
+
+</body>
+<script>
+
+            document.addEventListener('DOMContentLoaded', () => {
+            const taskForm = document.getElementById('add-task-form');
+            const taskInput = document.getElementById('task-input');
+            const taskList = document.getElementById('task-list');
+
+            function renderTasks() {
+              
+                taskList.innerHTML = '';
+                const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+                
+                tasks.forEach((taskText, index) => {
+                    const li = document.createElement('li');
+                    li.className = 'task-item flex items-center justify-between bg-gray-50 p-4 rounded-lg transition-all';
+                    
+                    const taskTextSpan = document.createElement('span');
+                    taskTextSpan.textContent = taskText;
+                    taskTextSpan.className = 'text-gray-700';
+                    
+                    const removeButton = document.createElement('button');
+                    removeButton.textContent = 'Remove';
+                    removeButton.className = 'remove-btn text-red-500 font-semibold opacity-0 transition-opacity';
+                    
+                   
+                    removeButton.addEventListener('click', () => {
+                        removeTask(index);
+                    });
+
+                    li.appendChild(taskTextSpan);
+                    li.appendChild(removeButton);
+                    taskList.appendChild(li);
+                });
+            }
+
+           
+            function addTask(taskText) {
+                const existingTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+                
+                const updatedTasks = [...existingTasks, taskText];
+                localStorage.setItem("tasks",JSON.stringify(updatedTasks))
+                renderTasks(); 
+            }
+
+           
+            function removeTask(indexToRemove) {
+                const existingTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+                const updatedTasks = existingTasks.filter((_, index) => index !== indexToRemove);
+                //updating the local storage
+                localStorage.setItem("tasks",JSON.stringify(updatedTasks));
+                renderTasks(); 
+            }
+
+            // Event listener for the form submission.
+            taskForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const taskText = taskInput.value.trim();
+                if (taskText !== "") {
+                    addTask(taskText);
+                    taskInput.value = "";
+                } else {
+                    taskInput.placeholder = "Please enter a task!";
+                    setTimeout(() => {
+                        taskInput.placeholder = "e.g., Learn localStorage";
+                    }, 2000);
+                }
+            });
+
+            // Initial render of tasks when the page loads.
+            renderTasks();
+        });
+    </script>
+</html>
