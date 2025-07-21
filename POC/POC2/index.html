@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Number guessing game</title>
+
+    <style>
+      html {
+        font-family: sans-serif;
+      }
+
+      body {
+        width: 50%;
+        max-width: 800px;
+        min-width: 480px;
+        margin: 0 auto;
+      }
+
+      .form input[type="number"] {
+        width: 200px;
+      }
+
+      .lastResult {
+        color: white;
+        padding: 3px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Number guessing game</h1>
+
+    <p>
+      We have selected a random number between 1 and 100. See if you can guess
+      it in 10 turns or fewer. We'll tell you if your guess was too high or too
+      low.
+    </p>
+
+    <div class="form">
+      <label for="guessField">Enter a guess: </label>
+      <input
+        type="number"
+        min="1"
+        max="100"
+        required
+        id="guessField"
+        class="guessField" />
+      <input type="submit" value="Submit guess" class="guessSubmit" onclick="Submit()"/>
+    </div>
+
+    <div class="resultParas">
+      <p class="guesses"></p>
+      <p class="lastResult" style="color: black;"></p>
+      <p class="lowOrHi"></p>
+    </div>
+
+    <script>
+     const guessedNumber=document.querySelector(".guessField")
+     const btn= document.querySelector(".guessSubmit")
+     const guesses=document.querySelector(".guesses")
+     const pastValue= localStorage.getItem("pastNum");
+     const randomNumber= Math.floor(Math.random()*100);
+     const lastResult= document.querySelector(".lastResult");
+    const lowOrHigh= document.querySelector(".lowOrHi");
+    
+    // console.log(pastValue,typeof(pastValue),lastResult)
+    //  console.log(guessedNumber,btn,randomNumber);
+    // console.log(guessedNumber.value)
+
+    lastResult.innerHTML= pastValue===null ? "hi user welcome to the game" :`the  pastValue is: ${pastValue} `
+    
+
+     const Submit =()=>{
+        const guessed= `the guessed value is ${guessedNumber.value}`
+        guesses.innerHTML=guessed
+
+        localStorage.setItem("pastNum",guessedNumber.value);
+
+        lowOrHi();
+     }
+     function lowOrHi(){
+
+            console.log(guessedNumber.value,randomNumber)
+            if (guessedNumber.value > randomNumber) {lowOrHigh.innerText="you Lost the actual is lower "}
+            else if (guessedNumber.value < randomNumber) {lowOrHigh.innerText="you lost the actual value is greater than guessed"}
+            else if (guessedNumber.value == randomNumber) {lowOrHigh.innerText="you Won"}
+            else return
+     }
+
+
+    </script>
+  </body>
+</html>
