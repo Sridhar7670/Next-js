@@ -13,7 +13,7 @@ cd basics
 cd intermediate
 # or
 cd stackagentsnext
-```
+``` 
 Then, run the development server:
 
 ```
