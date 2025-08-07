@@ -18,7 +18,7 @@ const Header: React.FC = () => {
           <a href="#" className="text-brand-text-light hover:text-white transition-colors">Contact</a>
         </div>
         <button className="bg-brand-accent text-brand-primary font-bold py-2 px-4 rounded-lg hover:bg-opacity-80 transition-all">
-          Subscribe
+          Subscribe 
         </button>
       </nav>
     </header>
