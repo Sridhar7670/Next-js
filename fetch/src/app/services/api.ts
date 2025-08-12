@@ -1,6 +1,6 @@
 
 
-const API_BASE_URL = 'http://localhost:3000'; // NestJS backend URL
+const API_BASE_URL = 'https://full-stack-app-8v1u.onrender.com'; // NestJS backend URL
 
 // A helper function to get the JWT token from browser storage
 const getToken = () => {
