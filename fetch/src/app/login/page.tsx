@@ -10,7 +10,7 @@ export default function SignInPage() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [username, setUsername] = useState('');  
+  // const [username, setUsername] = useState('');  
   const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -18,7 +18,9 @@ export default function SignInPage() {
     setError(null);
 
     try {
-      await login({ email, password, username });
+      // await login({ email, password ,username});
+      await login({ email, password });
+
       router.push('/');
     } catch (err: any) {
       console.error('Sign-in failed:', err);
@@ -56,7 +58,7 @@ export default function SignInPage() {
       >
         <h1 style={{ textAlign: 'center', marginBottom: '20px' }}>Log In</h1>
         <form onSubmit={handleSubmit}>
-          <div style={{ marginBottom: '15px' }}>
+          {/* <div style={{ marginBottom: '15px' }}>
             <label style={{ display: 'block', marginBottom: '6px',color:"black" }}>Username:</label>
             <input
               type="text"
@@ -72,7 +74,7 @@ export default function SignInPage() {
                 color: 'black',
               }}
             />
-          </div>
+          </div> */}
           <div style={{ marginBottom: '15px' }}>
             <label style={{ display: 'block', marginBottom: '6px' ,color:"black"}}>Email:</label>
             <input

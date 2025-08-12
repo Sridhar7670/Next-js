@@ -5,12 +5,11 @@ import Link from 'next/link';
 import styles from './HomePage.module.css'; 
 
 export default function HomePage() {
-  const { isAuthenticated } = useAuth();
-  const user: string | null | undefined = "";
+  const { isAuthenticated,Username } = useAuth();
   
   const getGreetingMessage = () => {
     if (!isAuthenticated) return 'Manage your tasks and reports seamlessly. Log in to get started or sign up to join us.';
-    // if (user?.name?.trim()) return `Hi ${user.name}`;
+    if (Username?.trim()) return `Hi ${Username}`;
     return 'Hi User ';
   };
 

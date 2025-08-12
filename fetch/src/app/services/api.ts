@@ -1,6 +1,6 @@
 
 
-const API_BASE_URL = 'http://localhost:3000'; // Your NestJS backend URL
+const API_BASE_URL = 'http://localhost:3000'; // NestJS backend URL
 
 // A helper function to get the JWT token from browser storage
 const getToken = () => {
@@ -71,7 +71,7 @@ export const getAllReports = async () => {
   const token = getToken();
   if (!token) throw new Error('No authentication token found.');
 
-  const response = await fetch(`${API_BASE_URL}/reports/all`, { // Assuming you create a GET /reports/all endpoint
+  const response = await fetch(`${API_BASE_URL}/reports/all`, { 
     headers: {
       'Authorization': `Bearer ${token}`,
     },
