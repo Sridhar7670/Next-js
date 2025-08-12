@@ -1,6 +1,5 @@
 'use client';
 import { LoggedIn } from '@/app/services/api';
-// Corrected the import name to match the API service convention
 
 import React, { createContext, useState, useContext, useEffect } from 'react';
 
@@ -25,8 +24,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const login = async (credentials: any) => {
     try {
-      // Use the imported signIn function
+      // Use the imported LoggedIn function
       const data = await LoggedIn(credentials); 
+      console.log(data);
       localStorage.setItem('jwt_token', data.access_token);
       setToken(data.access_token);
     } catch (error) {
@@ -55,6 +55,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
 export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
+  
   if (!context) {
     throw new Error('useAuth must be used within an AuthProvider');
   }

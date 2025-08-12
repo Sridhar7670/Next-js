@@ -72,7 +72,7 @@ export default function AdminReportsPage() {
       <h1>Admin - Manage Reports</h1>
       <table style={{ width: '100%', borderCollapse: 'collapse' }}>
         <thead>
-          <tr style={{ background: '#eee' }}>
+          <tr style={{ background: '#eee' ,color:"black"}}>
             <th style={{ padding: '10px', border: '1px solid #ddd' }}>Make & Model</th>
             <th style={{ padding: '10px', border: '1px solid #ddd' }}>Price</th>
             <th style={{ padding: '10px', border: '1px solid #ddd' }}>Status</th>

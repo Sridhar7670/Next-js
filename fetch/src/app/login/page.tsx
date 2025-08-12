@@ -1,15 +1,16 @@
 'use client';
 
 import { useState } from 'react';
-import { useAuth } from '@/context/AuthContext'; // Corrected path
+import { useAuth } from '@/context/AuthContext'; 
 import { useRouter } from 'next/navigation';
 
 export default function SignInPage() {
   const router = useRouter();
-  const { login, isAuthenticated } = useAuth(); // Use the login function from context
+  const { login, isAuthenticated } = useAuth();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');  
   const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -17,9 +18,7 @@ export default function SignInPage() {
     setError(null);
 
     try {
-      // Call the login function from the context
-      await login({ email, password });
-      // On success, redirect to the home page
+      await login({ email, password, username });
       router.push('/');
     } catch (err: any) {
       console.error('Sign-in failed:', err);
@@ -27,7 +26,6 @@ export default function SignInPage() {
     }
   };
 
-  // If the user is already logged in, redirect them away from the login page
   if (isAuthenticated) {
     router.replace('/');
     return <div>You are already logged in. Redirecting...</div>;
@@ -56,10 +54,27 @@ export default function SignInPage() {
           boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
         }}
       >
-        <h1 style={{ textAlign: 'center', marginBottom: '20px' }}>Sign In</h1>
+        <h1 style={{ textAlign: 'center', marginBottom: '20px' }}>Log In</h1>
         <form onSubmit={handleSubmit}>
           <div style={{ marginBottom: '15px' }}>
-            <label style={{ display: 'block', marginBottom: '6px' }}>Email:</label>
+            <label style={{ display: 'block', marginBottom: '6px',color:"black" }}>Username:</label>
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+              style={{
+                width: '100%',
+                padding: '10px',
+                border: '1px solid #ccc',
+                borderRadius: '4px',
+                boxSizing: 'border-box',
+                color: 'black',
+              }}
+            />
+          </div>
+          <div style={{ marginBottom: '15px' }}>
+            <label style={{ display: 'block', marginBottom: '6px' ,color:"black"}}>Email:</label>
             <input
               type="email"
               value={email}
@@ -76,7 +91,7 @@ export default function SignInPage() {
             />
           </div>
           <div style={{ marginBottom: '15px' }}>
-            <label style={{ display: 'block', marginBottom: '6px' }}>Password:</label>
+            <label style={{ display: 'block', marginBottom: '6px' ,color:"black"}}>Password:</label>
             <input
               type="password"
               value={password}
@@ -105,7 +120,7 @@ export default function SignInPage() {
               fontWeight: 'bold',
             }}
           >
-            Sign In
+            Log In
           </button>
         </form>
         {error && (

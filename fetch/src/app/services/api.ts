@@ -20,7 +20,7 @@ export const signUp = async (credentials: any) => {
 };
 
 export const LoggedIn = async (credentials: any) => {
-  const response = await fetch(`${API_BASE_URL}/auth/signin`, {
+  const response = await fetch(`${API_BASE_URL}/auth/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(credentials),
@@ -37,7 +37,7 @@ export const createReport = async (reportData: any) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`, // Send the token
+      'Authorization': `Bearer ${token}`, 
     },
     body: JSON.stringify(reportData),
   });

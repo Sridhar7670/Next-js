@@ -67,14 +67,19 @@ export default function Header() {
         color: 'black',
       }}>
       <Link href="/">Home</Link>
-      <Link href="/reports">Create Report</Link>
       
-      {isAuthenticated && <Link href="/admin/reports">Admin</Link>}
+      
+      {isAuthenticated && 
+      <>
+        <Link href="/admin/reports">Admin</Link>
+        <Link href="/reports">Create Report</Link>
+      </>
+      }
 
       {isAuthenticated ? (
         <button onClick={handleLogout}>Logout</button>
       ) : (
-        <div>
+        <div style={{display:"flex",gap:"20px"}}>
           <Link href="/login" style={{ marginRight: '10px' }}>Login</Link>
           <Link href="/signup">Sign Up</Link>
         </div>
