@@ -19,4 +19,4 @@ npm-debug.log*
 /dist
 
 # Misc
-.DS_Store
+.DS_Store.DS_Store
