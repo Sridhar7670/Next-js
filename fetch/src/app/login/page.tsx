@@ -10,126 +10,150 @@ export default function SignInPage() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const [username, setUsername] = useState('');  
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     setError(null);
+    setIsLoading(true);
 
     try {
-      // await login({ email, password ,username});
       await login({ email, password });
-
       router.push('/');
     } catch (err: any) {
       console.error('Sign-in failed:', err);
       setError(err.message || 'Failed to sign in. Please check your credentials.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
   if (isAuthenticated) {
     router.replace('/');
-    return <div>You are already logged in. Redirecting...</div>;
+    return (
+      <div className="fade-in" style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: '100vh',
+        color: 'var(--foreground)',
+      }}>
+        You are already logged in. Redirecting...
+      </div>
+    );
   }
 
   return (
-    <div
-      className="login-container"
-      style={{
-        backgroundColor: 'whitesmoke',
-        height: '100vh',
+    <div className="fade-in" style={{
+        minHeight: '100vh',
         display: 'flex',
-        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-      }}
-    >
-      <div
-        style={{
-          minWidth: '400px',
-          margin: '50px auto',
-          backgroundColor: 'white',
-          color: 'black',
-          padding: '20px',
-          borderRadius: '8px',
-          boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
-        }}
-      >
-        <h1 style={{ textAlign: 'center', marginBottom: '20px' }}>Log In</h1>
+        padding: '2rem',
+      }}>
+      <div className="card" style={{
+        width: '100%',
+        maxWidth: '400px',
+      }}>
+        <h1 style={{
+          textAlign: 'center',
+          marginBottom: '2rem',
+          color: 'var(--foreground)',
+          fontSize: '1.8rem',
+          fontWeight: 'bold',
+        }}>
+          Welcome Back
+        </h1>
+        
         <form onSubmit={handleSubmit}>
-          {/* <div style={{ marginBottom: '15px' }}>
-            <label style={{ display: 'block', marginBottom: '6px',color:"black" }}>Username:</label>
+          <div style={{ marginBottom: '1.5rem' }}>
+            <label style={{
+              display: 'block',
+              marginBottom: '0.5rem',
+              color: 'var(--foreground)',
+              fontWeight: '500',
+            }}>
+              Email:
+            </label>
             <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-              style={{
-                width: '100%',
-                padding: '10px',
-                border: '1px solid #ccc',
-                borderRadius: '4px',
-                boxSizing: 'border-box',
-                color: 'black',
-              }}
-            />
-          </div> */}
-          <div style={{ marginBottom: '15px' }}>
-            <label style={{ display: 'block', marginBottom: '6px' ,color:"black"}}>Email:</label>
-            <input
+              className="input"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              style={{
-                width: '100%',
-                padding: '10px',
-                border: '1px solid #ccc',
-                borderRadius: '4px',
-                boxSizing: 'border-box',
-                color: 'black',
-              }}
+              placeholder="Enter your email"
             />
           </div>
-          <div style={{ marginBottom: '15px' }}>
-            <label style={{ display: 'block', marginBottom: '6px' ,color:"black"}}>Password:</label>
+          
+          <div style={{ marginBottom: '1.5rem' }}>
+            <label style={{
+              display: 'block',
+              marginBottom: '0.5rem',
+              color: 'var(--foreground)',
+              fontWeight: '500',
+            }}>
+              Password:
+            </label>
             <input
+              className="input"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              style={{
-                width: '100%',
-                padding: '10px',
-                border: '1px solid #ccc',
-                borderRadius: '4px',
-                boxSizing: 'border-box',
-                color: 'black',
-              }}
+              placeholder="Enter your password"
             />
           </div>
+          
+          {error && (
+            <div style={{
+              background: 'var(--destructive)',
+              color: 'white',
+              padding: '0.75rem',
+              borderRadius: '8px',
+              marginBottom: '1.5rem',
+              fontSize: '0.875rem',
+            }}>
+              {error}
+            </div>
+          )}
+          
           <button
+            className="btn btn-primary"
             type="submit"
+            disabled={isLoading}
             style={{
               width: '100%',
-              padding: '12px',
-              backgroundColor: '#4CAF50',
-              color: 'white',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: 'pointer',
-              fontWeight: 'bold',
+              padding: '0.875rem',
+              fontSize: '1rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.5rem',
             }}
           >
-            Log In
+            {isLoading && <div className="loading-spinner"></div>}
+            {isLoading ? 'Signing In...' : 'Sign In'}
           </button>
         </form>
-        {error && (
-          <p style={{ color: 'red', marginTop: '15px', textAlign: 'center' }}>
-            Error: {error}
-          </p>
-        )}
+        
+        <div style={{
+          textAlign: 'center',
+          marginTop: '1.5rem',
+          color: 'var(--muted-foreground)',
+        }}>
+          Don't have an account?{' '}
+          <a
+            href="/signup"
+            style={{
+              color: 'var(--primary)',
+              textDecoration: 'none',
+              fontWeight: '500',
+            }}
+          >
+            Sign up
+          </a>
+        </div>
       </div>
     </div>
   );
