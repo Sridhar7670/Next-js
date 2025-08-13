@@ -4,8 +4,6 @@ import { useState, useEffect } from 'react';
 import { getAllReports, approveReport } from '../../services/api';
 import { useAuth } from '@/context/AuthContext';
 
-
-// Define a type for our report for better type safety
 interface Report {
   id: string;
   make: string;
@@ -27,9 +25,8 @@ export default function AdminReportsPage() {
         try {
           setLoading(true);
           const data = await getAllReports();
-          // The backend returns an object, so we convert it to an array
           console.log(data)
-          setReports(Object.values(data)); 
+          setReports(Object.values(data));
           setError(null);
         } catch (err: any) {
           setError(err.message);
@@ -44,7 +41,6 @@ export default function AdminReportsPage() {
   const handleApprovalToggle = async (reportId: string, currentStatus: boolean) => {
     try {
       const updatedReport = await approveReport(reportId, !currentStatus);
-      // Update the state locally to reflect the change immediately in the UI
       setReports(prevReports =>
         prevReports.map(report =>
           report.id === reportId ? { ...report, approved: updatedReport.approved } : report
@@ -56,46 +52,156 @@ export default function AdminReportsPage() {
   };
 
   if (!isAuthenticated) {
-    return <p>You must be logged in to view this page.</p>;
+    return (
+      <div className="fade-in" style={{
+        minHeight: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: '2rem',
+      }}>
+        <div className="card" style={{ textAlign: 'center' }}>
+          <h2 style={{ color: 'var(--foreground)', marginBottom: '1rem' }}>
+            Authentication Required
+          </h2>
+          <p style={{ color: 'var(--muted-foreground)' }}>
+            You must be logged in to view this page.
+          </p>
+        </div>
+      </div>
+    );
   }
 
   if (loading) {
-    return <p>Loading reports...</p>;
+    return (
+      <div className="fade-in" style={{
+        minHeight: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '1rem',
+          color: 'var(--foreground)',
+        }}>
+          <div className="loading-spinner"></div>
+          Loading reports...
+        </div>
+      </div>
+    );
   }
 
   if (error) {
-    return <p style={{ color: 'red' }}>Error: {error}</p>;
+    return (
+      <div className="fade-in" style={{
+        minHeight: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: '2rem',
+      }}>
+        <div className="card" style={{ textAlign: 'center' }}>
+          <h2 style={{ color: 'var(--destructive)', marginBottom: '1rem' }}>
+            Error Loading Reports
+          </h2>
+          <p style={{ color: 'var(--muted-foreground)' }}>
+            {error}
+          </p>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h1>Admin - Manage Reports</h1>
-      <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-        <thead>
-          <tr style={{ background: '#eee' ,color:"black"}}>
-            <th style={{ padding: '10px', border: '1px solid #ddd' }}>Make & Model</th>
-            <th style={{ padding: '10px', border: '1px solid #ddd' }}>Price</th>
-            <th style={{ padding: '10px', border: '1px solid #ddd' }}>Status</th>
-            <th style={{ padding: '10px', border: '1px solid #ddd' }}>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {reports.map((report) => (
-            <tr key={report.id}>
-              <td style={{ padding: '10px', border: '1px solid #ddd' }}>{report.make} {report.model} ({report.year})</td>
-              <td style={{ padding: '10px', border: '1px solid #ddd' }}>${report.price.toLocaleString()}</td>
-              <td style={{ padding: '10px', border: '1px solid #ddd', color: report.approved ? 'green' : 'orange' }}>
-                {report.approved ? 'Approved' : 'Pending'}
-              </td>
-              <td style={{ padding: '10px', border: '1px solid #ddd', textAlign: 'center' }}>
-                <button onClick={() => handleApprovalToggle(report.id, report.approved)}>
-                  {report.approved ? 'Reject' : 'Approve'}
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="fade-in" style={{
+      minHeight: '100vh',
+      padding: '2rem',
+      maxWidth: '1200px',
+      margin: '0 auto',
+    }}>
+      <h1 style={{
+        fontSize: '2.5rem',
+        fontWeight: 'bold',
+        textAlign: 'center',
+        marginBottom: '2rem',
+        color: 'var(--foreground)',
+      }}>
+        ⚙️ Admin - Manage Reports
+      </h1>
+
+      {reports.length === 0 ? (
+        <div className="card" style={{ textAlign: 'center' }}>
+          <h2 style={{ color: 'var(--foreground)', marginBottom: '1rem' }}>
+            No Reports Found
+          </h2>
+          <p style={{ color: 'var(--muted-foreground)' }}>
+            There are currently no reports to manage.
+          </p>
+        </div>
+      ) : (
+        <div className="card">
+          <div className="table-responsive">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Vehicle</th>
+                  <th>Price</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {reports.map((report) => (
+                  <tr key={report.id}>
+                    <td>
+                      <div>
+                        <div style={{ fontWeight: '600' }}>
+                          {report.make} {report.model}
+                        </div>
+                        <div style={{ 
+                          fontSize: '0.875rem', 
+                          color: 'var(--muted-foreground)' 
+                        }}>
+                          {report.year}
+                        </div>
+                      </div>
+                    </td>
+                    <td style={{ fontWeight: '600' }}>
+                      ${report.price.toLocaleString()}
+                    </td>
+                    <td>
+                      <span style={{
+                        padding: '0.25rem 0.75rem',
+                        borderRadius: '9999px',
+                        fontSize: '0.75rem',
+                        fontWeight: '600',
+                        background: report.approved ? 'var(--accent)' : '#f59e0b',
+                        color: 'white',
+                      }}>
+                        {report.approved ? '✅ Approved' : '⏳ Pending'}
+                      </span>
+                    </td>
+                    <td>
+                      <button
+                        className={report.approved ? 'btn btn-secondary' : 'btn btn-primary'}
+                        onClick={() => handleApprovalToggle(report.id, report.approved)}
+                        style={{
+                          padding: '0.5rem 1rem',
+                          fontSize: '0.875rem',
+                        }}
+                      >
+                        {report.approved ? '❌ Reject' : '✅ Approve'}
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
