@@ -8,23 +8,29 @@ export default function SignUpPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
-  const [error, setError] = useState('');
+  const [error, setError] = useState<{ message: string } | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
+   setError(null);
     setIsLoading(true);
     
     try {
       await signUp({ email, password, username });
-      await login({ email, password, username });
+      await login({email,password})
       router.push('/reports');
-    } catch (err: any) {
-      setError(err.message);
-    } finally {
+    }catch (err: any) {
+    const message =
+    err?.response?.data?.message || 
+    err?.message ||
+    'Something went wrong. Please try again.';
+    
+  setError({ message });
+}
+finally {
       setIsLoading(false);
     }
   };
@@ -104,6 +110,7 @@ export default function SignUpPage() {
               required
             />
           </div>
+          {/* 
            {error && (
             <div style={{
               background: 'var(--destructive)',
@@ -115,7 +122,24 @@ export default function SignUpPage() {
             }}>
               {error}
             </div>
-          )}
+          )} */}
+          <div>
+              {error?.message && (
+          <div style={{
+            background: 'var(--destructive)',
+            color: 'white',
+            padding: '0.75rem',
+            borderRadius: '8px',
+            marginBottom: '1.5rem',
+            fontSize: '0.875rem',
+          }}>
+            {error.message}
+          </div>
+        )}
+
+          </div>
+
+          
           <button
             className="btn btn-primary"
             type="submit"
@@ -148,7 +172,7 @@ export default function SignUpPage() {
               fontWeight: '500',
             }}
           >
-            Sign in
+            Log in
           </a>
         </div>
       </div>

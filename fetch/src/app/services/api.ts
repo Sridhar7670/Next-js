@@ -1,6 +1,7 @@
 
 
 const API_BASE_URL = 'https://full-stack-app-8v1u.onrender.com'; // NestJS backend URL
+// const API_BASE_URL='http://localhost:3001'
 
 // A helper function to get the JWT token from browser storage
 const getToken = () => {
@@ -15,7 +16,7 @@ export const signUp = async (credentials: any) => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(credentials),
   });
-  if (!response.ok) throw new Error('Failed to sign up');
+  if (!response.ok) throw new Error('Failed to sign up jiiguygityf');
   return response.json();
 };
 
