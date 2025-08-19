@@ -15,14 +15,15 @@ export default function SignUpPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-   setError(null);
+    setError(null);
     setIsLoading(true);
     
     try {
       await signUp({ email, password, username });
       await login({email,password})
       router.push('/reports');
-    }catch (err: any) {
+    }
+    catch (err: any) {
     const message =
     err?.response?.data?.message || 
     err?.message ||

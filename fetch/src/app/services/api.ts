@@ -1,5 +1,3 @@
-
-
 const API_BASE_URL = 'https://full-stack-app-8v1u.onrender.com'; // NestJS backend URL
 // const API_BASE_URL='http://localhost:3001'
 
@@ -10,23 +8,72 @@ const getToken = () => {
 
 // --- AUTHENTICATION ---
 
+// export const signUp = async (credentials: any) => {
+//   const response = await fetch(`${API_BASE_URL}/auth/signup`, {
+//     method: 'POST',
+//     headers: { 'Content-Type': 'application/json' },
+//     body: JSON.stringify(credentials),
+//   });
+//   if (!response.ok) throw new Error('Failed to sign up ');
+//   return response.json();
+// };
+
 export const signUp = async (credentials: any) => {
   const response = await fetch(`${API_BASE_URL}/auth/signup`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(credentials),
   });
-  if (!response.ok) throw new Error('Failed to sign up jiiguygityf');
-  return response.json();
+
+  let data;
+  try {
+    data = await response.json(); // Attempt to parse response body
+    console.log(data)
+  } catch (err) {
+    // If parsing fails, return a generic error
+    throw new Error('Unexpected error occurred');
+  }
+
+  if (!response.ok) {
+    // Throw the backend error message if available
+    const errorMessage = data.message || 'Failed to sign up';
+    throw new Error(errorMessage);
+  }
+
+  return data;
 };
 
+// export const LoggedIn = async (credentials: any) => {
+//   const response = await fetch(`${API_BASE_URL}/auth/login`, {
+//     method: 'POST',
+//     headers: { 'Content-Type': 'application/json' },
+//     body: JSON.stringify(credentials),
+//   });
+//   if (!response.ok) throw new Error('Invalid credentials ');
+//   return response.json();
+// };
+
+// in apis.ts
 export const LoggedIn = async (credentials: any) => {
   const response = await fetch(`${API_BASE_URL}/auth/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(credentials),
   });
-  if (!response.ok) throw new Error('Invalid credentials');
+
+  if (!response.ok) {
+    const errorData = await response.json(); 
+
+    // Create a custom error object that mimics the structure axios uses.
+    // This makes it perfectly compatible with your component's error handling.
+    const error: any = new Error(errorData.message || 'An error occurred');
+    error.response = { data: errorData }; // Attach the response data
+    
+    // Throw this new, more detailed error.
+    throw error;
+  }
+
+  // If the response IS okay, return the JSON body as before.
   return response.json();
 };
 

@@ -18,16 +18,33 @@ export default function SignInPage() {
     setError(null);
     setIsLoading(true);
 
+    // try {
+    //   await login({ email, password });
+    //   router.push('/');
+    // } catch (err: any) {
+    //   console.error('Sign-in failed:', err);
+    //   setError(err.message || 'Failed to sign in. Please check your credentials.');
+    // } finally {
+    //   setIsLoading(false);
+    // }
+    // In your SignInPage component...
     try {
       await login({ email, password });
       router.push('/');
     } catch (err: any) {
       console.error('Sign-in failed:', err);
-      setError(err.message || 'Failed to sign in. Please check your credentials.');
+
+      const message =
+        err?.response?.data?.message || 
+        err?.message ||
+        'Failed to sign in. Please check your credentials.';
+
+      setError(message);
     } finally {
       setIsLoading(false);
     }
   };
+  
 
   if (isAuthenticated) {
     router.replace('/');
